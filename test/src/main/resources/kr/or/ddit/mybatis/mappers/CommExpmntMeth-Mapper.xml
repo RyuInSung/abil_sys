@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommExpmntMeth-Mapper">
+	
+	<select id="selectCommExpmntMethList" resultType="commexpmntmeth">
+		SELECT
+			*
+		FROM
+			TEST_ISRYU_BBS_MNG
+		WHERE
+			DEL_CHECK='N'
+		ORDER BY
+			REG_DTTM DESC
+	</select>
+	
+	<select id="selectCommExpmntMethListCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			TEST_ISRYU_BBS_MNG
+		WHERE
+			DEL_CHECK='N'
+	</select>
+	
+	<select id="selectCommExpmntMethByExpmntMethId" resultType="commexpmntmeth">
+		SELECT
+			*
+		FROM
+			TEST_ISRYU_BBS_MNG
+		WHERE
+			EXPMNT_METH_ID=#{DATA}
+	</select>
+	
+	<update id="updateCommExpMethForRemove">
+		UPDATE
+			TEST_ISRYU_BBS_MNG
+		SET
+			DEL_CHECK='Y'
+		WHERE
+			EXPMNT_METH_ID=#{DATA}
+	</update>
+	
+	<update id="updateCommExpMethForModify" parameterType="commexpmntmeth">
+		UPDATE
+			TEST_ISRYU_BBS_MNG
+		SET
+			RSLT_CONTENT=#{rsltContent}
+		WHERE
+			EXPMNT_METH_ID=#{expmntMethId}
+	</update>
+	
+	<update id="insertCommExpMeth" parameterType="commexpmntmeth">
+		INSERT
+		INTO
+			TEST_ISRYU_BBS_MNG
+			(EXPMNT_METH_ID,EXPMNT_METH_NM,REG_ID,REG_DTTM,RSLT_TABLE,RSLT_COLUMN,DEL_CHECK,RSLT_CONTENT)
+		VALUES
+			(#{expmntMethId},#{expmntMethNm},#{regId},#{regDttm},#{rsltTable},#{rsltColumn},#{delCheck},#{rsltContent})
+	</update>
+	
+	
+</mapper>

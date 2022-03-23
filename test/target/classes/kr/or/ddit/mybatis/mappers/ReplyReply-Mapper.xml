@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReplyReply-Mapper">
+
+	<update id="insertReplyReply" parameterType="replyReply">
+		INSERT
+		INTO
+			TEST_ISRYU_BBS_MNG_REPLY_REPLY
+			(RRNO,RNO,EXPMNT_METH_ID,REPLY_REPLY_TEXT,REPLY_REPLYER,REPLY_REG_DATE,REPLY_PICTURE)
+		VALUES
+			(TEST_ISRYU_REPLY_REPLY_RNO_SEQ.NEXTVAL,#{rno},#{expmntMethId},#{replyReplyText},#{replyReplyer},#{replyRegDate},#{replyPicture})
+	</update>
+	
+	<select id="selectReplyReplyList" parameterType="replyReply" resultType="replyReply">
+		SELECT
+			*
+		FROM
+			TEST_ISRYU_BBS_MNG_REPLY_REPLY
+		WHERE
+			RNO=#{rno}
+		AND
+			EXPMNT_METH_ID=#{expmntMethId}
+		ORDER BY
+			RRNO
+	</select>
+	
+</mapper>

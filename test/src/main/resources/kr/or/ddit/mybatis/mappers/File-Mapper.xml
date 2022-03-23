@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="File-Mapper">
+	
+	<update id="insertFile" parameterType="file">
+		INSERT
+		INTO
+			TEST_ISRYU_BBS_MNG_FILE
+			(FILE_NO,FILE_PATH,FILE_NAME,EXPMNT_METH_ID)
+		VALUES
+			(TEST_ISRYU_FILE_NO_SEQ.NEXTVAL,#{filePath},#{fileName},#{expmntMethId})
+	</update>
+	
+	<select id="selectFileList" resultType="file">
+		SELECT
+			*
+		FROM
+			TEST_ISRYU_BBS_MNG_FILE
+		WHERE
+			EXPMNT_METH_ID=#{DATA}
+	</select>
+	
+	<!-- <update id="updateFileList" parameterMap="file">
+		UPDATE
+			TEST_ISRYU_BBS_MNG_FILE
+		SET
+			FILE_NAME=#{}
+		WHERE
+			EXPMNT_METH_ID=#{expmntMethId}
+		AND
+			FILE_NAME=#{fileName}
+	</update> -->
+	
+	<!-- <update id="deleteFile" parameterType="fileChange">
+		DELETE
+		FROM
+			TEST_ISRYU_BBS_MNG_FILE
+		WHERE
+			EXPMNT_METH_ID=#{expmntMethId}
+		AND
+			FILE_NAME!=#{fileName}
+	</update> -->
+	
+	<update id="deleteFile" parameterType="fileChange">
+		DELETE
+		FROM
+			TEST_ISRYU_BBS_MNG_FILE
+		WHERE
+			EXPMNT_METH_ID=#{expmntMethId}
+		AND
+			FILE_NAME=#{fileName}
+	</update>
+	
+	
+</mapper>

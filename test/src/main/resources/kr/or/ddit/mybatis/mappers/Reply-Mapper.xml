@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reply-Mapper">
+	
+	<select id="selectReplyListByExpmntMethId" resultType="reply">
+		SELECT
+			*
+		FROM
+			TEST_ISRYU_BBS_MNG_REPLY
+		WHERE
+			EXPMNT_METH_ID=#{DATA}
+		ORDER BY
+			RNO
+	</select>
+	
+	<select id="selectReplyCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			TEST_ISRYU_BBS_MNG_REPLY
+		WHERE
+			EXPMNT_METH_ID=#{DATA}
+	</select>
+	
+	<update id="insertReply" parameterType="reply">
+		INSERT
+		INTO
+			TEST_ISRYU_BBS_MNG_REPLY
+			(RNO,EXPMNT_METH_ID,REPLY_TEXT,REPLYER,REG_DATE,PICTURE)
+		VALUES
+			(TEST_ISRYU_REPLY_RNO_SEQ.NEXTVAL,#{expmntMethId},#{replytext},#{replyer},#{regDate},#{picture})
+	</update>
+	
+	<update id="deleteReply" parameterType="int">
+		DELETE
+		FROM
+			TEST_ISRYU_BBS_MNG_REPLY
+		WHERE
+			RNO=#{DATA}
+	</update>	
+	
+</mapper>
